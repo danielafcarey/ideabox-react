@@ -15,7 +15,6 @@ class App extends Component {
   }
 
   setIdeaInState(ideaObj) {
-    console.log(ideaObj)
     this.setState({ ideas: [...this.state.ideas, ideaObj] });
   }
   
@@ -26,7 +25,7 @@ class App extends Component {
           <h1 className="App-title">IdeaBox</h1>
         </header>
         <Input setIdeaInState={ this.setIdeaInState } />
-        <IdeaList />
+        <IdeaList ideasArray={ this.state.ideas } />
       </div>
     );
   }

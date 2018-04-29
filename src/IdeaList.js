@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import Idea from './Idea';
 
-class IdeaList extends Component {
-  constructor() {
-    super()
+const IdeaList = ({ ideasArray }) => {
+  let ideas = ideasArray.map(ideaObj => {
+    return <Idea title={ ideaObj.titleInput } 
+                 body={ ideaObj.bodyInput } 
+                 quality={ ideaObj.quality } />
+  })
 
-    this.state = {}
-  }
-
-
-  render() {
-    return (
-      <div className="Idea-list">
-        <h1>Hi</h1>
-      </div>
-    )
-  }
+  return (
+    <div className="Idea-list">
+      { ideas }
+    </div>
+  )
 
 }
 
