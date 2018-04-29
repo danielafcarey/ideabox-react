@@ -7,10 +7,17 @@ class App extends Component {
   constructor() {
     super()
 
-    this.state = {}
+    this.state = {
+      ideas: [] 
+    }
+
+    this.setIdeaInState = this.setIdeaInState.bind(this);
   }
 
-
+  setIdeaInState(ideaObj) {
+    console.log(ideaObj)
+    this.setState({ ideas: [...this.state.ideas, ideaObj] });
+  }
   
   render() {
     return (
@@ -18,7 +25,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">IdeaBox</h1>
         </header>
-        <Input />
+        <Input setIdeaInState={ this.setIdeaInState } />
         <IdeaList />
       </div>
     );
