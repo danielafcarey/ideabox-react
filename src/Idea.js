@@ -1,10 +1,11 @@
 import React from 'react';
 
-const Idea = () => {
+const Idea = ({ title, body, quality }) => {
   return (
     <div className="idea-card">
-      <h1>Title</h1>
-      <p>Body</p>
+      <h1>{ title }</h1>
+      <p>{ body }</p>
+      <h3>{ quality }</h3>
     </div>
   )
 
