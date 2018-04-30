@@ -16,16 +16,16 @@ it('renders without crashing', () => {
 
 describe('App', () => {
   it('has a default state of an empty ideas array', () => {
-    let renderedApp = shallow(<App />);
-    let expected = [];
+    const renderedApp = shallow(<App />);
+    const expected = [];
 
     expect(renderedApp.state('ideas')).toEqual(expected);
   })
 
   it('adds an idea object to the ideas array in state', () => {
-    let renderedApp = shallow(<App />);
-    let appInst = renderedApp.instance();
-    let expected = ['idea'];
+    const renderedApp = shallow(<App />);
+    const appInst = renderedApp.instance();
+    const expected = ['idea'];
 
     appInst.setIdeaInState('idea');
 
@@ -33,16 +33,19 @@ describe('App', () => {
   })
 
   it('renders an Input component with correct props', () => {
-    let renderedApp = shallow(<App />);
-    let expectedProps = { setIdeaInState: renderedApp.instance().setIdeaInState }
+    const renderedApp = shallow(<App />);
+    const expectedProps = { setIdeaInState: renderedApp.instance().setIdeaInState }
 
     expect(renderedApp.find(Input).length).toEqual(1);
     expect(renderedApp.find(Input).props()).toEqual(expectedProps);
   })
 
   it('renders an IdeaList component with correct props', () => {
-    let renderedApp = shallow(<App />);
-    let expectedProps = { ideasArray: [] }
+    const renderedApp = shallow(<App />);
+    const expectedProps = { ideasArray: [] }
+
+    expect(renderedApp.find(IdeaList).length).toEqual(1);
+    expect(renderedApp.find(IdeaList).props()).toEqual(expectedProps);
   })
 
 })
