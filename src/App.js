@@ -3,6 +3,7 @@ import './App.css';
 import Input from './Input';
 import IdeaList from './IdeaList';
 
+
 class App extends Component {
   constructor() {
     super()
