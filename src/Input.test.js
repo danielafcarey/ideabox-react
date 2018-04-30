@@ -21,7 +21,7 @@ describe('Input', () => {
 
   it('updates the idea title in state with a change event in the input field', () => {
     const renderedInput = shallow(<Input />);
-    const appInst = renderedInput.instance();
+    const inputInst = renderedInput.instance();
     const expected = {
       titleInput: 'title',
       bodyInput: '',
@@ -34,25 +34,40 @@ describe('Input', () => {
       } 
     }
 
-    appInst.setIdeaInput(mockedEvent);
+    inputInst.setIdeaInput(mockedEvent);
 
     expect(renderedInput.state('idea')).toEqual(expected);
   })
 
-  it.skip('renders an Input component with correct props', () => {
+  it('updates the idea body in state with a change event in the input field', () => {
     const renderedInput = shallow(<Input />);
-    const expectedProps = { setIdeaInState: renderedInput.instance().setIdeaInState }
+    const inputInst = renderedInput.instance();
+    const expected = {
+      titleInput: '',
+      bodyInput: 'body',
+      quality: 'swill'
+    };
+    const mockedEvent = { 
+      target: {
+        value: 'body',
+        name: 'bodyInput'
+      } 
+    }
 
-    expect(renderedInput.find(Input).length).toEqual(1);
-    expect(renderedInput.find(Input).props()).toEqual(expectedProps);
+    inputInst.setIdeaInput(mockedEvent);
+
+    expect(renderedInput.state('idea')).toEqual(expected);
   })
 
-  it.skip('renders an IdeaList component with correct props', () => {
-    const renderedInput = shallow(<Input />);
-    const expectedProps = { ideasArray: [] }
+  it('passes the idea in state to App when form is submitted', () => {
+    const propFunction = jest.fn();
+    const renderedInput = shallow(<Input setIdeaInState={ propFunction }/>);
+    const inputInst = renderedInput.instance();
+    const mockedEvent = { preventDefault: () => {} }
 
-    expect(renderedInput.find(IdeaList).length).toEqual(1);
-    expect(renderedInput.find(IdeaList).props()).toEqual(expectedProps);
+    inputInst.sendIdeaToApp(mockedEvent);
+
+    expect(propFunction).toBeCalledWith(inputInst.state.idea)
   })
 
 })
